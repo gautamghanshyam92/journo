@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+
+<base href="">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="google" content="notranslate" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/css/journo.css">
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"></script> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="libs/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/constants.js"></script>
+    <script src="assets/js/handler.js"></script>
+<script src="assets/js/index.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+
+<title>Journo</title>
+
+</head>
+<body>
+
+
+        <div class="ContainerFluid container-fluid">
+                <div class="Header row">
+                   <div class="HeaderText col-2">
+                      <p><span>JOURNO</span></p>
+                   </div>
+                   <div class="col-8">
+                      <form class="">
+                         <div class="SearchFormGroup form-group">
+                            <input name="searchStoryAndTag" id="searchStoryAndTag" placeholder="Search story names, tags" type="text" class="SearchStoryAndTag form-control">
+                         </div>
+                      </form>
+                   </div>
+                </div>
+                <div class="row">
+                   <div class="col-3 padding-0">
+                        <div class="row">
+                           <div class="NavigationBar col-2">
+                              <ul class="nav flex-column">
+                                 <li class="nav-item">
+                                    <a class="NavLink nav-link" href="/pages/index">
+                                       <i class="fa fa-rss" aria-hidden="true"></i>
+                                    </a>
+                                 </li>
+                                 <li class="nav-item">
+                                       <a class="NavLink nav-link" href="/pages/golive">
+                                          <i class="fa fa-podcast" aria-hidden="true"></i>
+                                       </a>
+                                    </li>
+                                 <li class="nav-item">
+                                    <a class="NavLink nav-link" href="/pages/settings">
+                                       <i class="fa fa-cog" aria-hidden="true"></i>
+                                    </a>
+                                 </li>
+                              </ul>
+                           </div>
+                           <div class="col-10 padding-0" style="border-right: 1px solid #ccc;">
+                                 <ul class="agency-tabs tab">
+                      {% block streams %}
+                                         {% for stream in items.all_streams %}
+                                         <li class="tablinks" onclick="openStreamTab('{{ stream.name }}')">
+                                             <span class="device_name">{{ stream.name }}</span>
+                                             {% if stream.status == "available" %}
+                                                 <span class="device_status" title="Available">
+                                                      <i class="fa fa-circle available" aria-hidden="true"></i>
+                                                 </span> 
+                                             {% elif stream.status == "busy" %}
+                                                 <span class="device_status" title="Online">
+                                                      <i class="fa fa-circle online" aria-hidden="true"></i>
+                                                 </span>
+                                             {% else %}
+                                                <span class="device_status" title="Offline">
+                                                      <i class="fa fa-circle offline" aria-hidden="true"></i>
+                                                </span> 
+                                             {% endif %}
+                                             <span class="channel_details" title="Channel Name" id="channelName">channel name should be here</span>
+                                         </li>
+                                         {% endfor %}
+                      {% endblock %}
+                                 </ul>
+                            </div>
+                        </div>
+                      </div>
+                   
+                      <div class="news-feed-right col-9">
+                        <div id="">
+                           {% include "stream.jinja.html" ignore missing %}
+                        </div>
+                </div>
+             </div>
+
+
+</body>
+</html>
+

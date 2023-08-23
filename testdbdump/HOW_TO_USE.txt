@@ -1,0 +1,2 @@
+## To restore database:
+    $ mongorestore dump

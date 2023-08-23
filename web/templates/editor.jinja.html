@@ -1,0 +1,21 @@
+{% block editor %}
+<table id="editorInfoLists" class="table">
+    <tr style="background-color: #0d75a5;color: #fff;" class="row">
+        <th class="col-3">Name</th>
+        <th class="col-3">Protocol</th>
+        <th class="col-3">Format</th>
+        <th class="col-3">Action</th>
+    </tr>
+    {% for item in items.editors %}
+    <tr id="editor-row-{{item.id}}" class="row">
+      <th id="editor-name-{{item.id}}" class="col-3">{{ item.app_name }}</th>
+      <th id="editor-protocol-{{item.id}}" class="col-3">{{ item.protocol }}</th>
+      <th id="editor-data-format-{{item.id}}" class="col-3">{{ item.data_format }}</th>
+      <td class="col-3">
+        <button id=editor_edit-{{item.id}} class="table-edit" onclick="getEditorInfoForUpdate(this.id)"  data-toggle="modal" data-target="#editor_edit_modal">Edit</button>
+        <button id="editor_del-{{item.id}}" name="{{item.name}}" onclick="setEditorDetailsToBeDeleted(this.id, this.name)" class="table-del" data-toggle="modal" data-target="#editor_delete_modal">Delete</button>
+      </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,129 @@
+categories:
+{
+	"_id" : "88abc73186dd4ba0ba8e972502605847",
+	"uid" : "war",
+	"name" : "War"
+}
+
+tags:
+{
+	"_id" : "32a6f82d999648df922e6486ee3d280c",
+	"uid" : "airstrike",
+	"name" : "Air Strike"
+}
+
+assets:
+{
+	"_id" : "ef0e93169fa5fda4a80cfc4e90897564__filename_2.mov",
+	"asset_id" : "ef0e93169fa5fda4a80cfc4e90897564__filename_2.mov",
+	"created_date" : "2019-05-08",
+	"created_datetime" : "2019-05-08 22:08:59.887590",
+	"file_name" : "filename_2.mov",
+	"file_size" : 1234567890,
+	"path" : "share://newsftpstore/mediastore/filename_2.mov",
+	"thumbnail_path": None,
+	"lowres_path": None,
+	"share_id" : "newsftpstore",
+	"special_flags" : {},
+	"story_id" : "ef0e93169fa5fda4a80cfc4e90897564"
+}
+
+stories:
+{
+	"_id" : "ef0e93169fa5fda4a80cfc4e90897564",
+	"attachments" : [
+		"ef0e93169fa5fda4a80cfc4e90897564__filename_1.mov",
+		"ef0e93169fa5fda4a80cfc4e90897564__filename_2.mov",
+		"ef0e93169fa5fda4a80cfc4e90897564__filename_3.mov"
+	],
+	"category_id" : "f0526adb690a47b2a191567f659061c9",
+	"description" : "Indian fight's back on Pulmawa attack.",
+	"story_title" : "Indian Air Strike",
+	"tags" : [
+		"32a6f82d999648df922e6486ee3d280c"
+	],
+	"tag_names": ["Pulmawa Attack"],
+	"user_id" : "44bcb9a74929413b9e2cb196c77f3f45"
+	"created_date" : "2019-05-08",
+	"created_datetime" : "2019-05-08 22:08:59.887590",
+	"updated_datetime" : "2019-05-08 22:08:59.887590",
+	"incident_date" : "2019-05-08",
+	"incident_time" : "22:08:59",
+	"review_status" : {
+		"reviewed" : true,
+		"reviewed_by" : "44bcb9a74929413b9e2cb196c77f3f45"
+	},
+	"sent_to_editors": false,
+	"archived": false
+}
+
+tasks:
+{
+	"_id" : "70c1aa1084126168d9ae9184cc49abe7",
+	"bandwidth" : 234156,
+	"created_date" : "2019-05-08",
+	"created_datetime" : "2019-05-08 22:33:37.461163",
+	"data" : {
+		"story_id" : "ef0e93169fa5fda4a80cfc4e90897564",
+		"file_name" : "filename_1.mov",
+		"file_size" : 1234567890,
+		"dst_path" : "share://newsftpstore/mediastore/filename_1.mov",
+		"asset_id" : "ef0e93169fa5fda4a80cfc4e90897564__filename_1.mov",
+		"task_id" : "70c1aa1084126168d9ae9184cc49abe7"
+	},
+	"progress" : 26.09,
+	"status" : "INPROGRESS",
+	"task_name" : "upload",
+	"updated_datetime" : "2019-05-08 22:33:37.461163"
+}
+
+agencies:
+{
+	"_id" : "journofeed",
+	"config" : {},
+	"description" : "Journo News Feed",
+	"name" : "Inbox"
+}
+
+users:
+{
+	"_id" : "44bcb9a74929413b9e2cb196c77f3f45",
+	"display_name" : "Administrator",
+	"email" : "admin@journo.com",
+	"mobile" : "9876654321",
+	"password" : "admin",
+	"roles" : [
+		"editor",
+		"reporter",
+		"admin"
+	],
+	"username" : "admin"
+}
+
+shares:
+{
+    "_id": "mediastore",
+    "name": "Media Store",
+    "type": "fileshare",
+    "protocols": ["ftp", "http"]
+    "paths": {
+        "ftp": {
+            "protocol": "ftp",
+            "ip": "192.168.0.105",
+            "port": 21,
+            "username": "nspaceai",
+            "password": "nspaceai",
+            "path": "/nstore/uploads"
+        },
+        "http": {
+            "basepath": "http://localhost:9000/nstore/uploads"
+        }
+    },
+    "state": "active"
+}
+
+newsapps:
+{
+    "id": "apple",
+    "webhook": "http://apple.com/stories-feed"
+}

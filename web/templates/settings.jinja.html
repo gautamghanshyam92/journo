@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<head>
+
+<base href="">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="google" content="notranslate" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/css/journo.css">
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"></script> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="libs/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/constants.js"></script>
+    <script src="assets/js/handler.js"></script>
+<script src="assets/js/index.js"></script>
+<script src="assets/js/utils.js"></script>
+<title>Journo</title>
+
+
+</head>
+<body>
+  <div class="ContainerFluid container-fluid">
+    <div class="Header row">
+      <div class="HeaderText col-2">
+        <p><span>JOURNO</span></p>
+      </div>
+      <div class="col-8">
+        <form class="">
+          <div class="SearchFormGroup form-group">
+            <input name="searchStoryAndTag" id="searchStoryAndTag" placeholder="Search story names, tags" type="text" class="SearchStoryAndTag form-control">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3 padding-0">
+        <div class="row">
+          <div class="NavigationBar col-2">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="NavLink nav-link" href="/pages/index">
+                    <i class="fa fa-rss" aria-hidden="true"></i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a class="NavLink nav-link" href="/pages/golive">
+                      <i class="fa fa-podcast" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                  <a class="NavLink nav-link" href="/pages/settings">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                  </a>
+                </li>
+              </ul>
+          </div>
+          <div class="col-10 padding-0" style="border-right: 1px solid #ccc;">
+            <ul class="agency-tabs tab">
+              <li class="tablinks active" onclick="openCity(event, 'Storage_container')" id="defaultOpen">Storage</li>
+              <li class="tablinks" onclick="openCity(event, 'Category')">Category</li>
+              <li class="tablinks" onclick="openCity(event, 'News-Agency')">News Agency</li>
+              <li class="tablinks" onclick="openCity(event, 'Editor')">Editor</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="news-feed-right col-9">
+        <!-- storage section starts-->
+        <div id="Storage_container" class="tabcontent" style="display:block">
+          <h3 class="tab-titles"> Storage </h3>
+          <div class="create-btn-div"><button class="grow" data-toggle="modal" data-target="#storage_create_modal">Create Storage</button></div>
+          {% include  "shares.jinja.html" ignore missing %}
+        </div>
+        <!-- storage section ends-->
+        <!-- Category section starts-->
+        <div id="Category" class="tabcontent">
+          <h3 class="tab-titles">Category</h3>
+          <div class="create-btn-div"><button class="grow" data-toggle="modal" data-target="#create-category">Create Category</button></div>
+          {% include "categories.jinja.html" ignore missing %}
+        </div>
+        <!-- Category section ends-->
+        <!-- News-Agency section starts-->
+        <div id="News-Agency" class="tabcontent">
+          <h3 class="tab-titles">News Agency</h3>
+          <div class="create-btn-div"><button class="grow" data-toggle="modal" data-target="#agency_create_modal">Create News Agency</button></div>
+          {% include "agencies.jinja.html" ignore missing %}
+        </div>
+        <!-- News-Agency section ends-->
+        <!-- Editor section starts-->
+        <div id="Editor" class="tabcontent">
+          <h3 class="tab-titles">Editor</h3>
+          <div class="create-btn-div"><button class="grow" data-toggle="modal" data-target="#editor_create_modal">Create Editor</button></div>
+          {% include  "editor.jinja.html" ignore missing %}
+        </div>
+        <!-- Editor section starts-->
+      </div>
+      <!--col--9 ends-->
+    </div>
+  </div>
+  <!--storage modal section starts-->
+  <div class="modal fade Storage_container_modal" id="storage_create_modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Create storage</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Storage Id</p>
+          <input type="text" placeholder="Enter the Id" id="create_storage_id" oninput="preventInputValue(value, 'create_storage_id')">
+          <p>Name</p>
+          <input type="text" placeholder="Enter the name"  id="create_storage_name">
+          <p>Protocol</p>
+          <select class="protocol-select" id="create_protocol">
+            <option>Choose Protocol</option>
+            <option value="file">FILE</option>
+            <option value="smb">SMB</option>
+            <option value="ftp">FTP</option>
+          </select>
+          <div class="file box" id="file_storage_create_box">
+            <label class="switch">
+              <input type="checkbox" id="fileCreateTogSwitch">
+              <div class="slider round"></div>
+            </label>
+            <p>Path</p>
+            <input id="fileCreatePathUrl" type="text" placeholder="Enter path url">
+          </div>
+          <div class="smb box" id="smb_storage_create_box">
+            <label class="switch">
+              <input type="checkbox" id="smbCreateTogSwitch">
+              <div class="slider round"></div>
+            </label>
+            <p>IP</p>
+            <input id="createSmbIpAddress" type="text" placeholder="Enter IP address"><br>
+            <p>Username</p>
+            <input id="createSmbUserName" type="text" placeholder="Enter User Name"><br>
+            <p>Password</p>
+            <input id="createSmbPassword" type="text" placeholder="Enter Password"><br>
+            <p>Share Name</p>
+            <input id="createSmbShareName" type="text" placeholder="Enter Share Name"><br>
+          </div>
+          <div class="ftp box" id="ftp_storage_create_box">
+            <label class="switch">
+              <input type="checkbox" id="ftpCreateTogSwitch">
+              <div class="slider round"></div>
+            </label>
+            <p>IP</p>
+            <input id="createFtpIpAddress" type="text" placeholder="Enter IP address"><br>
+            <p>Port</p>
+            <input id="createFtpPort" type="text" placeholder="Enter Port" oninput="preventInputValue(value, 'createFtpPort', 'port')"><br>
+            <p>Username</p>
+            <input id="createFtpUserName" type="text" placeholder="Enter User Name"><br>
+            <p>Password</p>
+            <input id="createFtpPassword" type="text" placeholder="Enter Password"><br>
+            <p>Offset path</p>
+            <input id="createFtpOffsetPath" type="text" placeholder="Enter Offset Path"><br>
+          </div>
+          <p>Type</p>
+          <div style="width: 300px;">
+            <input type="radio" name="storage_type_create_box" value="proxyshare" checked class="storage_type_create_box" style="display: inline; width : 5%;"> <span>Proxy</span>&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="storage_type_create_box" value="fileshare" class="storage_type_create_box" style="display: inline; width: 5%;"> <span>File</span>
+          </div>
+          <p class="align-center">
+            <button class="std-btn" data-dismiss="modal" onclick="createNewStorage()">SAVE</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade Storage_container_modal" id="storage_edit_modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit storage</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input type="text" placeholder="Enter Your storage ID" id="edit_storage_id" style="display:none;">
+          <p>Name</p>
+          <input type="text" placeholder="Enter Your name"  id="edit_storage_name">
+          <p>Protocol</p>
+          <select class="protocol-select" id="edit_protocol">
+            <option>Choose Protocol</option>
+            <option value="file">FILE</option>
+            <option value="smb">SMB</option>
+            <option value="ftp">FTP</option>
+          </select>
+          <div class="file box" id="file_storage_edit_box">
+            <label class="switch">
+              <input type="checkbox" id="fileTogSwitch">
+              <div class="slider round"></div>
+            </label>
+            <p>Path</p>
+            <input id="filePathUrl" type="text" placeholder="Enter path url">
+          </div>
+          <div class="smb box" id="smb_storage_edit_box">
+            <label class="switch">
+              <input type="checkbox" id="smbTogSwitch">
+              <div class="slider round"></div>
+            </label>
+            <p>IP</p>
+            <input id="smbIpAddress" type="text" placeholder="Enter IP address"><br>
+            <p>Username</p>
+            <input id="smbUserName" type="text" placeholder="Enter User Name"><br>
+            <p>Password</p>
+            <input id="smbPassword" type="text" placeholder="Enter Password"><br>
+            <p>Share Name</p>
+            <input id="smbShareName" type="text" placeholder="Enter Share Name"><br>
+          </div>
+          <div class="ftp box" id="ftp_storage_edit_box">
+            <label class="switch">
+              <input type="checkbox" id="ftpTogSwitch">
+              <div class="slider round"></div>
+            </label>
+            <p>IP</p>
+            <input id="ftpIpAddress" type="text" placeholder="Enter IP address"><br>
+            <p>Port</p>
+            <input id="editFtpPort" type="text" placeholder="Enter Port" oninput="preventInputValue(value, 'editFtpPort', 'port')"><br>
+            <p>Username</p>
+            <input id="ftpUserName" type="text" placeholder="Enter User Name"><br>
+            <p>Password</p>
+            <input id="ftpPassword" type="text" placeholder="Enter Password"><br>
+            <p>Offset path</p>
+            <input id="ftpOffsetPath" type="text" placeholder="Enter Offset Path"><br>
+          </div>
+          <div style="width: 300px;">
+            <input type="radio" name="storage_type_edit_box" value="proxyshare" checked class="storage_type_edit_box" style="display: inline; width : 5%;"> <span>Proxy</span>&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="storage_type_edit_box" value="fileshare" class="storage_type_edit_box" style="display: inline; width: 5%;"> <span>File</span>
+          </div>
+          <p class="align-center">
+            <button class="std-btn" data-dismiss="modal" onclick="updateStorageDetails()">SAVE</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="storage_delete_modal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Delete Storage</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+              <input style="display:none;" type="text" id="delete_storage_id">
+              <input style="display:none;" type="text" id="delete_storage_name">
+            <div class="align-center">
+              <p>Are you sure you want to delete this storage?</p>
+              <button class="std-btn" data-dismiss="modal" onclick="deleteStorage()">DELETE</button>
+              <button class="std-btn" data-dismiss="modal">CANCEL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!--storage modal section ends-->
+  <!--category modal section starts-->
+  <div class="modal fade Storage_container_modal" id="create-category" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Create Category</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p>Category Name</p>
+            <input type="text" placeholder="Enter a category name" id="new_category_name"><br>
+            <p class="align-center">
+              <button class="std-btn" data-dismiss="modal" onclick="createNewCategory()">CREATE</button>
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="modal fade Storage_container_modal" id="category_modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Category</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input style="display:none;" type="text" id="input_category_id"><br>
+          <p>Category Name</p>
+          <input type="text" placeholder="Category Name" id="input_category_name"><br>
+          <p class="align-center">
+            <button class="std-btn" data-dismiss="modal" onclick="updateCategoryDetails();">SAVE</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="category_delete_modal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Delete Category</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+              <input style="display:none;" type="text" id="delete_input_category_id">
+              <input style="display:none;" type="text" id="delete_input_category_name">
+            <div class="align-center">
+              <p>Are you sure you want to delete this category?</p>
+              <button class="std-btn" data-dismiss="modal" onclick="deleteCategory()">DELETE</button>
+              <button class="std-btn" data-dismiss="modal">CANCEL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--category modal section ends-->
+  <!--Agency modal section starts-->
+  <div class="modal fade Storage_container_modal" id="agency_create_modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Create News Agency</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Agency ID</p>
+          <input type="text" placeholder="Enter agency id" id="create_agency_id" oninput="preventInputValue(value, 'create_agency_id')"><br>
+          <p>Agency Name</p>
+          <input type="text" placeholder="Enter agency name" id="create_agency_name"><br>
+          <p>Agency Description</p>
+          <input type="text" placeholder="Enter agency description" id="create_agency_description"><br>
+          <p>Feed URL</p>
+          <input type="text" placeholder="Enter agency feed url" id="create_agency_feed_url"><br>
+          <p>Feed Type</p>
+          <select id="create_agency_feed_type">
+            <option value='rest-get'>GET</option>
+            <option value='rss'>RSS</option>
+          </select>
+          <br><br>
+          <p>Feed FORMAT</p>
+          <select id="create_agency_feed_format">
+            <option value='json'>JSON</option>
+            <option value='xml'>XML</option>
+          </select>
+          <p class="align-center">
+            <button class="std-btn" data-dismiss="modal" onclick="createNewAgency()">CREATE</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade Storage_container_modal" id="agency_edit_modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Edit Agency</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input type="text" placeholder="Enter agency id" id="edit_agency_id" style="display:none;">
+          <p>Agency Name</p>
+          <input type="text" placeholder="Enter agency name" id="edit_agency_name"><br>
+          <p>Agency Description</p>
+          <input type="text" placeholder="Enter agency description" id="edit_agency_description"><br>
+          <p>Feed URL</p>
+          <input type="text" placeholder="Enter Name" id="edit_agency_feed_url"><br>
+          <p>Feed Type</p>
+          <select id="edit_agency_feed_type">
+            <option value='rest-get'>GET</option>
+            <option value='rss'>RSS</option>
+          </select>
+          <br><br>
+          <p>Feed FORMAT</p>
+          <select id="edit_agency_feed_format">
+            <option value='json'>JSON</option>
+            <option value='xml'>XML</option>
+          </select>
+          <p class="align-center">
+            <button class="std-btn" data-dismiss="modal" onclick="updateAgencyDetails()">SAVE</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="agency_delete_modal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Delete Agency</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+              <input style="display:none;" type="text" id="delete_input_agency_id">
+              <input style="display:none;" type="text" id="delete_input_agency_name">
+            <div class="align-center">
+              <p>Are you sure you want to delete this agency?</p>
+              <button class="std-btn" data-dismiss="modal" onclick="deleteAgency()">DELETE</button>
+              <button class="std-btn" data-dismiss="modal">CANCEL</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <!--Agency modal section ends-->
+  <!--Editor modal section starts-->
+  <div class="modal fade Storage_container_modal" id="editor_create_modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Create Editor</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Editor Id</p>
+          <input type="text" placeholder="Enter editor id" id="create_editor_id" oninput="preventInputValue(value, 'create_editor_id')"><br>
+          <p>Editor Name</p>
+          <input type="text" placeholder="Enter editor name" id="create_editor_name"><br>
+          <p>Protocol</p>
+          <select id="create_editor_protocol">
+            <option>Choose Protocol</option>
+            <option value='post'>POST</option>
+            <option value='upload'>UPLOAD</option>
+          </select>
+          <br><br>
+          <div class="post box" id="post_editor_create_box">
+            <p>Url</p>
+            <input type="text" placeholder="Enter a valid url" id="create_editor_url">
+          </div>
+          <div class="upload box" id="upload_editor_create_box">
+            <p>IP</p>
+            <input type="text" placeholder="Enter IP" id="create_editor_ip"><br>
+            <p>Port</p>
+            <input type="text" placeholder="Enter port" id="create_editor_port" oninput="preventInputValue(value, 'create_editor_port', 'port')"><br>
+            <p>Offset Path</p>
+            <input type="text" placeholder="Enter offset path" id="create_editor_offset_path"><br>
+            <p>User Name</p>
+            <input type="text" placeholder="Enter user name" id="create_editor_username"><br>
+            <p>Password</p>
+            <input type="text" placeholder="Enter password" id="create_editor_password">
+          </div>
+          <p>Data Format</p>
+            <div style="width: 300px;"><input type="radio" name="create_editor_format" value="json" checked class="create_editor_format" style="display: inline; width : 5%;"> <span>JSON</span>&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="create_editor_format" value="xml" class="create_editor_format" style="display: inline; width: 5%;"> <span>XML</span>
+            </div>
+          <p class="align-center">
+            <button class="std-btn" data-dismiss="modal" onclick="createNewEditor()">CREATE</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade Storage_container_modal" id="editor_edit_modal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Edit Editor</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <input type="text" placeholder="Enter editor id" id="edit_editor_id" style="display: none;">
+            <p>Editor Name</p>
+            <input type="text" placeholder="Enter editor name" id="edit_editor_name"><br>
+            <p>Protocol</p>
+            <select id="edit_editor_protocol">
+              <option>Choose Protocol</option>
+              <option value='post'>POST</option>
+              <option value='upload'>UPLOAD</option>
+            </select>
+            <br><br>
+            <div class="post box" id="post_editor_edit_box">
+              <p>Url</p>
+              <input type="text" placeholder="Enter a valid url" id="edit_editor_url">
+            </div>
+            <div class="upload box" id="upload_editor_edit_box">
+              <p>IP</p>
+              <input type="text" placeholder="Enter IP" id="edit_editor_ip"><br>
+              <p>Port</p>
+              <input type="text" placeholder="Enter port" id="edit_editor_port" oninput="preventInputValue(value, 'edit_editor_port', 'port')"><br>
+              <p>Offset Path</p>
+              <input type="text" placeholder="Enter offset path" id="edit_editor_offset_path"><br>
+              <p>User Name</p>
+              <input type="text" placeholder="Enter user name" id="edit_editor_username"><br>
+              <p>Password</p>
+              <input type="text" placeholder="Enter password" id="edit_editor_password">
+            </div>
+            <p>Data Format</p>
+            <div style="width: 300px;"><input type="radio" name="editor_format" value="json" checked class="edit_editor_format" style="display: inline; width : 5%;"> <span>JSON</span>&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="editor_format" value="xml" class="edit_editor_format" style="display: inline; width: 5%;"> <span>XML</span>
+            </div>
+            <p class="align-center">
+              <button class="std-btn" data-dismiss="modal" onclick="updateEditorDetails()">SAVE</button>
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="modal fade" id="editor_delete_modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Delete Editor</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <input style="display:none;" type="text" id="delete_input_editor_id">
+            <input style="display:none;" type="text" id="delete_input_editor_name">
+          <div class="align-center">
+            <p>Are you sure you want to delete this editor?</p>
+            <button class="std-btn" data-dismiss="modal" onclick="deleteEditor()">DELETE</button>
+            <button class="std-btn" data-dismiss="modal">CANCEL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Editor modal section starts-->
+  <!-- CREATE POPUP ENDS -->
+</body>
+</html>

@@ -1,0 +1,67 @@
+query:
+    update_one()
+keys:
+    ['acknowledged', 'matched_count', 'modified_count', 'raw_result', 'upserted_id']
+--------------------------------------------------------------------------------------------------
+values: upsert=True, $setOnInsert
+condition: New Entry
+
+resp:
+acknowledged: True
+matched_count: 0
+modified_count: 0
+raw_result: {'n': 1, 'nModified': 0, 'upserted': 'test_feed', 'ok': 1.0, 'updatedExisting': False}
+upserted_id: test_feed
+--------------------------------------------------------------------------------------------------
+values: upsert=True, $setOnInsert
+condition: Entry Exists
+
+resp:
+acknowledged: True
+matched_count: 1
+modified_count: 0
+raw_result: {'n': 1, 'nModified': 0, 'ok': 1.0, 'updatedExisting': True}
+upserted_id: None
+--------------------------------------------------------------------------------------------------
+values: upsert=False, $set
+condition: Not Exists
+
+resp:
+acknowledged: True
+matched_count: 0
+modified_count: 0
+raw_result: {'n': 0, 'nModified': 0, 'ok': 1.0, 'updatedExisting': False}
+upserted_id: None
+--------------------------------------------------------------------------------------------------
+values: upsert=False, $set
+condition: Entry Exists
+
+resp:
+acknowledged: True
+matched_count: 1
+modified_count: 1
+raw_result: {'n': 1, 'nModified': 1, 'ok': 1.0, 'updatedExisting': True}
+upserted_id: None
+
+**************************************************************************************************
+
+query:
+    delete_one()
+keys:
+    ['acknowledged', 'raw_result', 'deleted_count']
+--------------------------------------------------------------------------------------------------
+condition: Entry Exists
+
+resp:
+acknowledged: True
+raw_result: {'n': 1, 'ok': 1.0}
+deleted_count: 1
+--------------------------------------------------------------------------------------------------
+condition: Not Exists
+
+resp:
+acknowledged: True
+raw_result: {'n': 0, 'ok': 1.0}
+deleted_count: 0
+
+**************************************************************************************************

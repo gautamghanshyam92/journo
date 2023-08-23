@@ -1,0 +1,7 @@
+asyncio>=3.4.3
+aiohttp>=3.5.4
+cchardet>=2.1.4
+aiodns>=2.0.0
+aiohttp-jinja2>=1.1.2
+motor>=2.0.0
+feedparser>=5.2.1

@@ -1,0 +1,21 @@
+{% block storage %}
+    <table id="storageInfoLists" class="table">
+        <tr style=" background-color: #0d75a5; color: #fff;" class="row">
+            <th class="col-3">Name</th>
+            <th class="col-3">Protocol</th>
+            <th class="col-3">Status</th>
+            <th class="col-3">Action</th>
+        </tr>
+        {% for item in items.shares %}
+        <tr id="storage-row-{{item.id}}" class="row">
+            <td id="storage-name-{{item.id}}" class="col-3">{{item.name}}</td>
+            <td id="storage-protocol-{{item.id}}" class="col-3">{{item.protocol}}</td>
+            <td id="storage-state-{{item.id}}" class="col-3">{{item.state}}</td>
+            <td class="col-3">
+            <button id="storage_edit-{{item.id}}"  class="table-edit" onclick="getStorageInfoForUpdate(this.id)"  data-toggle="modal" data-target="#storage_edit_modal">Edit</button>
+            <button id=storage_delete-{{ item.id }} name={{ item.name }} onclick="setStorageDetailsToBeDeleted(this.id, this.name)" class="table-del" data-toggle="modal" data-target="#storage_delete_modal">Delete</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

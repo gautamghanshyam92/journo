@@ -1,0 +1,30 @@
+{% block stream_detail %}
+{% set stream = items.stream %}
+<div id="{{ stream.name }}" class="tabcontent" style="display:block">
+    <div class="row">
+        <div class="col-12">
+            <div class="col-md-8 video-container">
+                <video id="stream-video-player" class="video-player" onclick="playStream('{{ stream.play_url }}')" controls aria-controls="Play"></video>
+                <form>
+                    <div class="edit-story-ul">
+                        <span class="width-80">User </span><span>{{ stream.userid }} </span>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-4 video-details">
+                <div>TEST1</div>
+                <span>TEST</span>
+                <span>TEST</span>
+                <span>TEST</span>
+                <div>TEST1</div>
+                <div>TEST1</div>
+                <div>TEST1</div>
+            </div>
+        <!-- End of video player block -->
+        </div>
+    <!-- End of row block -->
+    </div>
+<!-- End of complete stream block -->
+</div>
+{% endblock %}

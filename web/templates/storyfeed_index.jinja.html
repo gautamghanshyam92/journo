@@ -1,0 +1,19 @@
+{% block storyfeed %}
+    <div>
+        {% for item in items.storyfeed %}
+            <div class="storys-sections">
+            <a href="story/{{ item.id }}">  <span class="main-story-title"> {{ item.title }} </span> </a> &nbsp; &nbsp;
+            <span class="options-inactive"><i class="fa fa-thumbs-up" aria-hidden="true"></i> </span>
+            <span class="options-inactive"><i class="fa fa-check" aria-hidden="true"></i> </span>
+            <ul class="news-points">
+                    <li> <i class="fa fa-user" aria-hidden="true"></i> {{ item.reporter_name }} | &nbsp; </li>
+                    <li> {{ item.created_datetime }} | &nbsp; </li>
+                    {% for feed_tag in item.tags %}
+                        <li class="story-tags"> <i class="fa fa-tags"></i> {{ feed_tag }} | &nbsp; </li>
+                    {% endfor %}
+            </ul>
+                <p class="story-indetail"> {{ item.description }} </p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

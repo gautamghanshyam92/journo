@@ -1,0 +1,23 @@
+{% block agency %}
+<table id="agencyInfoLists" class="table">
+    <tr style="background-color: #0d75a5;color: #fff;" class="row">
+        <th class="col-2">Agency Name</th>
+        <th class="col-2">Feed Type</th>
+        <th class="col-2">Feed Format</th>
+        <th class="col-3">URL</th>
+        <th class="col-3">Action</th>
+    </tr>
+    {% for item in items.agencies %}
+    <tr id="agency-row-{{item.id}}" class="row">
+        <th id="agency-name-{{item.id}}" class="col-2">{{ item.name }}</th>
+        <th id="agency-feed-type-{{item.id}}" class="col-2">{{ item.feed_type }}</th>
+        <th id="agency-feed-format-{{item.id}}" class="col-2">{{ item.feed_format }}</th>
+        <th id="agency-url-{{item.id}}" class="col-3">{{ item.url }}</th>
+        <td class="col-3">
+          <button id=agency_edit-{{item.id}} class="table-edit" onclick="getAgencyInfoForUpdate(this.id)"  data-toggle="modal" data-target="#agency_edit_modal">Edit</button>
+          <button id=agency_delete-{{ item.id }} name={{ item.name }} onclick="setAgencyDetailsToBeDeleted(this.id, this.name)" class="table-del" data-toggle="modal" data-target="#agency_delete_modal">Delete</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

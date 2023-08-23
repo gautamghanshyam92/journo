@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<head>
+
+<base href="">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="google" content="notranslate" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/css/journo.css">
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"></script> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="libs/jquery-3.4.1.min.js"></script>
+<script src="assets/js/index.js"></script>
+<title>Journo</title>
+
+
+</head>
+<body>
+
+
+        <div class="ContainerFluid container-fluid">
+                <div class="Header row">
+                   <div class="HeaderText col-2">
+                      <p><span>JOURNO</span></p>
+                   </div>
+                   <div class="col-8">
+                      <form class="">
+                         <div class="SearchFormGroup form-group">
+                            <input name="searchStoryAndTag" id="searchStoryAndTag" placeholder="Search story names, tags" type="text" class="SearchStoryAndTag form-control">
+                         </div>
+                      </form>
+                   </div>
+                </div>
+                <div class="row">
+                   <div class="NavigationBar col-1">
+                      <ul class="nav flex-column">
+                         <li class="nav-item">
+                            <a class="NavLink nav-link" href="index.html">
+                               <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" class="svg-inline--fa fa-rss fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                  <path fill="currentColor" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path>
+                               </svg>
+                            </a>
+                         </li>
+                         <li class="nav-item">
+                            <a class="NavLink nav-link" href="settings.html">
+                               <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cog" class="svg-inline--fa fa-cog fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                  <path fill="currentColor" d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"></path>
+                               </svg>
+                            </a>
+                         </li>
+                      </ul>
+                   </div>
+                   <div class="col-2"></div>
+                      <div class="news-feed-right col-9">
+                          <div class="story-indetail">
+                              <div class="row">
+                                  <div class="padding-0 col-6">
+                                      <p class="detail-video-title"> 'Masood Azar case moving towards settlement' : china 
+                                          <span class="options-inactive"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span> 
+                                          <span class="options-inactive"><i class="fa fa-check" aria-hidden="true"></i> </span>
+                                      </p>
+                                      <p>News Reporter Name<span>chat </p>
+                                  </div>
+                                  <div class="padding-0 text-align-right col-6">Apr 20,2019 03:58 AM (1 hour ago) &nbsp; <button class="std-btns" data-toggle="modal" data-target="#preview">Preview</button></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/4bnnF1zQ5wk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                                    </div>
+                                    <div class="similar-catagory-div col-5">
+                                            <div class="similar-catagory-news">
+                                               <ul class="similar-catagory-news-ul">
+                                                  <li><img src="https://img.etimg.com/thumb/height-480,width-640,msid-68172748,imgsize-22378/masood-azhar.jpg"></li>
+                                                  <li>
+                                                     <p>Masood Azar media interaction</p>
+                                                     <p> <i class="fa fa-camera" aria-hidden="true"></i> | <span> 3MB </span> | <span>28-04-2019 10:00AM</span>  </p>
+                                                  </li>
+                                               </ul>
+                                            </div>
+                                            <div class="similar-catagory-news">
+                                               <ul class="similar-catagory-news-ul">
+                                                  <li><img src="https://img.etimg.com/thumb/height-480,width-640,msid-68172748,imgsize-22378/masood-azhar.jpg"></li>
+                                                  <li>
+                                                     <p>Masood Azar media interaction</p>
+                                                     <p> <i class="fa fa-video-camera" aria-hidden="true"></i> | <span> 3MB </span> | <span>28-04-2019 10:00AM</span>  </p>
+                                                  </li>
+                                               </ul>
+                                            </div>
+                                            <div class="similar-catagory-news">
+                                               <ul class="similar-catagory-news-ul">
+                                                  <li><img src="https://img.etimg.com/thumb/height-480,width-640,msid-68172748,imgsize-22378/masood-azhar.jpg"></li>
+                                                  <li>
+                                                     <p>Masood Azar media interaction</p>
+                                                     <p> <i class="fa fa-video-camera" aria-hidden="true"></i> | <span> 3MB </span> | <span>28-04-2019 10:00AM</span>  </p>
+                                                  </li>
+                                               </ul>
+                                            </div>
+                                         </div>
+                                         </div>
+                                         <div class="row">
+                                            <div class="col-12">
+                                               <form>
+                                                   <div class="edit-story-ul"><span class="width-80 story-detail-drop">category</span><span>: Crime</span></div>
+                                                   <div class="edit-story-ul"><span class="width-80">Tags</span><span>: Dummy </span></div>
+                                                   <div class="edit-story-ul"><span class="width-80">Incident Date</span><span>: 25/10/2015</span> </div>
+                                                   <div class="edit-story-ul"><span class="width-80">Incident Time</span><span>: 04:30AM</span> </div>
+                                                  <div class="edit-story-ul"><span class="width-80">Title</span><span>: first title</span> &nbsp; &nbsp;<span class="plus-textarea" data-toggle="modal" data-target="#myModal">+</span></div>
+                                                  <p id="appended-tiltle"></p>
+                                                  <div class="edit-story-ul"><span class="width-80">Description</span><span>: first description</span> &nbsp; &nbsp;<span class="plus-textarea"  data-toggle="modal" data-target="#myModal2">+</span></div>
+                                                  <p id="appended-des"></p>
+                                                  <div class="edit-story-ul"><span> <button class="std-btns">Save</button></span></div>
+                                               </form>
+                                            </div>
+                                         </div>
+                                         </div></div>
+                </div>
+             </div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+               <h4 class="modal-title">Update Title</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body text-center">
+            <textarea id="modal-title-textarea" class="append-textarea-title"></textarea>
+            <button class="std-btns get-title" onclick="gettitle()" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="myModal2" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+               <h4 class="modal-title">Update Description</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body text-center">
+            <textarea id="modal-title-des" class="append-textarea-des"></textarea>
+            <button class="std-btns get-title" onclick="getdes()" data-dismiss="modal">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade" id="preview" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+               <h4 class="modal-title">Preview</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body preview-modal-body">
+            <p>Category : Crime</p>
+            <p>Tag : XYZ</p>
+            <p>Incident Date : 22/07/2017</p>
+            <p>Incident Time : 04:30AM</p>
+            <p>Title : second title</p>
+            <p>Description : Second description</p>
+            <button class="std-btns" data-dismiss="modal">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+</html>
+

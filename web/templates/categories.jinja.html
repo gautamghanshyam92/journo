@@ -1,0 +1,17 @@
+{% block category %}
+<table id="categoryInfoLists" class="table">
+    <tr style="background-color: #0d75a5;color: #fff;" class="row">
+        <th class="col-8">Category Name</th>
+        <th class="col-4">Action</th>
+    </tr>
+    {% for item in items.categories %}
+    <tr id="category-row-{{item.id}}" class="row">
+        <td class="col-8">{{ item.name }}</td>
+        <td class="col-4">
+          <button id=category_edit-{{ item.id }}  class="table-edit" onclick="getCategoryDetailsForUpdate(this.id)"  data-toggle="modal" data-target="#category_modal">Edit</button>
+          <button id=category_delete-{{ item.id }} name={{ item.name }} onclick="setCategoryDetailsToBeDeleted(this.id, this.name)" class="table-del" data-toggle="modal" data-target="#category_delete_modal">Delete</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<head>
+    <base href="">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/journo.css">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"></script> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="../libs/jquery-3.4.1.min.js"></script>
+    <script src="../assets/js/constants.js"></script>
+    <script src="../assets/js/handler.js"></script>
+    <script src="../assets/js/index.js"></script>
+    <title>Journo</title>
+</head>
+<body>
+    <div class="ContainerFluid container-fluid">
+        <div class="Header row">
+            <div class="HeaderText col-2">
+                <p><span>JOURNO</span></p>
+            </div>
+            <div class="col-8">
+                <form class="">
+                    <div class="SearchFormGroup form-group">
+                        <input name="searchStoryAndTag" id="searchStoryAndTag" placeholder="Search story names, tags" type="text" class="SearchStoryAndTag form-control">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 padding-0">
+               <div class="row">
+                     <div class="NavigationBar col-2">
+                           <ul class="nav flex-column">
+                               <li class="nav-item">
+                                   <a class="NavLink nav-link" href="/pages/index">
+                                   <i class="fa fa-rss" aria-hidden="true"></i>
+                                   </a>
+                               </li>
+                               <li class="nav-item">
+                                   <a class="NavLink nav-link" href="/pages/golive">
+                                   <i class="fa fa-podcast" aria-hidden="true"></i>
+                                   </a>
+                               </li>
+                               <li class="nav-item">
+                                   <a class="NavLink nav-link" href="/pages/settings">
+                                   <i class="fa fa-cog" aria-hidden="true"></i>
+                                   </a>
+                               </li>
+                           </ul>
+                       </div>
+                       <div class="col-10 padding-0" id="col-2-elements" style="border-right: 1px solid #ccc;">
+                           {% include 'agencyfeed_index.jinja.html' ignore missing %}
+                       </div>
+               </div>
+            </div>
+            <div class="news-feed-right col-9">
+                <div class="story-indetail">
+                    <div class="row">
+                        <div class="padding-0 col-6">
+                            <p class="detail-video-title"> {{ items.story.title }}
+                                <span class="options-inactive"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                                <span class="options-inactive"><i class="fa fa-check" aria-hidden="true"></i> </span>
+                            </p>
+                            <p>{{ items.story.reporter_name }} </p>
+                        </div>
+                        <div class="padding-0 text-align-right col-6">{{ items.story.created_datetime }} &nbsp; <button class="std-btns" data-toggle="modal" data-target="#preview">Preview</button></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7">
+                            <!-- 
+                                Since we need to load a image placeholder
+                                <iframe width="350px" height="315px" src="{{ items.story.source_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                                -->
+                            <img width="550px" height="315px"  src="{{ items.story.source_url }}">
+                        </div>
+                        <div class="similar-catagory-div col-5">
+                            <div class="similar-catagory-news">
+                                <ul class="similar-catagory-news-ul">
+                                    {% for attachment in items.story.attachments %}
+                                    <div>
+                                        <li>
+                                            <img src="{{ attachment.source_url }}">
+                                        </li>
+                                        <li>
+                                            <p> {{ attachment.file_name }}</p>
+                                            <p> 
+                                                {% if attachment.type == "video" %}
+                                                <i class="fa fa-video-camera" aria-hidden="true">
+                                                {% else %}
+                                                <i class="fa fa-camera" aria-hidden="true">
+                                                {% endif %}
+                                                </i> | <span> {{ attachment.file_size}} </span> | <span> {{ attachment.created_date }}</span>
+                                            </p>
+                                        </li>
+                                    </div>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <form>
+                                <div class="edit-story-ul"><span class="width-80 story-detail-drop">Category</span><span>: {{ items.story.category }}</span></div>
+                                <div class="edit-story-ul"><span class="width-80">Tags</span>
+                                    <span>: </span>
+                                    {% for tag in items.story.tags %}
+                                    <span>{{ tag }}</span>
+                                    {% endfor %}
+                                </div>
+                                <div class="edit-story-ul"><span class="width-80">Incident Date</span><span>: {{ items.story.incident_date }}</span> </div>
+                                <div class="edit-story-ul"><span class="width-80">Incident Time</span><span>: {{ items.story.incident_time }}</span> </div>
+                                <div class="edit-story-ul"><span class="width-80">Title</span><span>: {{ items.story.title }}</span></div>
+                                <div class="edit-story-ul"><span class="width-80">Description</span><span>: {{ items.story.description }}</span> &nbsp; &nbsp;<span class="plus-textarea"  data-toggle="modal" data-target="#myModal2">+</span></div>
+                                <p id="appended-des"></p>
+                                <div class="edit-story-ul"><span> <button class="std-btns">Save</button></span></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Description</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body text-center">
+                    <textarea id="modal-title-des" class="append-textarea-des"></textarea>
+                    <button class="std-btns get-title" onclick="getdes()" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="preview" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Preview</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body preview-modal-body">
+                    <p> <span>Title :</span> {{ items.story.title }} </p>
+                    <p> <span>Description :</span> {{ items.story.description }} </p>
+                    <p> <span>Category :</span> {{ items.story.category }} </p>
+                    <p> <span>Tags :</span>
+                        {% for tag in items.story.tags %}
+                        <span class="preview-tags">{{ tag }}</span>
+                        {% endfor %}
+                    </p>
+                    <p> <span>Incident Date :</span> {{ items.story.incident_date }}</p>
+                    <p> <span>Incident Time :</span> {{ items.story.incident_time }}</p>
+                    <p> <span>Attachments :</span>
+                        {% for attachment in items.story.attachments %}
+                        <span class="preview-img"> <img src="../assets/images/dummy-img.png"> {{ attachment.file_name }} </span>
+                        {% endfor %}
+                    </p>
+                    <button class="std-btns" data-dismiss="modal" style="margin-top: 10px;">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

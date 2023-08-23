@@ -1,0 +1,78 @@
+TUS-1.0.0 RAW COMMANDS
+======================
+
+|| Create File ||
+-----------------
+REQUEST
+-------
+curl --request POST http://localhost:1080/files/ --header "upload-length: 290364446" --header "Tus-Resumable: 1.0.0" -i
+
+RESPONSE
+--------
+
+HTTP/1.1 201 Created
+Location: http://localhost:1080/files/13e3af8c43663ab312a30da0df722cba
+Tus-Resumable: 1.0.0
+X-Content-Type-Options: nosniff
+Date: Tue, 08 Oct 2019 09:05:31 GMT
+Content-Length: 0
+
+*************************************************************************
+
+|| Upload File ||
+-----------------
+REQUEST: Limiting transfer rate to 200K and termination upload in between to check Resume.
+-------
+curl --request PATCH --data-binary "@/home/ghanshyam/Videos/testfile_277M.mkv" http://localhost:1080/files/13e3af8c43663ab312a30da0df722cba --header "Tus-Resumable: 1.0.0" --header "upload-offset: 0" --header "Content-Type: application/offset+octet-stream" --header "Expect:" -i --limit-rate 200K
+
+*************************************************************************
+
+|| Get Upload Offset to Resume file upload ||
+---------------------------------------------
+REQUEST
+-------
+curl --head http://localhost:1080/files/13e3af8c43663ab312a30da0df722cba --header "Tus-Resumable: 1.0.0" -i
+
+RESPONSE
+--------
+HTTP/1.1 200 OK
+Cache-Control: no-store
+Tus-Resumable: 1.0.0
+Upload-Length: 290364446
+Upload-Offset: 7094272
+X-Content-Type-Options: nosniff
+Date: Tue, 08 Oct 2019 09:24:13 GMT
+
+*************************************************************************
+
+|| Resume Upload and Upload another 200 bytes ||
+------------------------------------------------
+REQUEST
+-------
+dd if=/home/ghanshyam/Videos/testfile_277M.mkv skip=7094272 bs=1 count=200 | curl --request PATCH --data-binary @- http://localhost:1080/files/13e3af8c43663ab312a30da0df722cba --header "Tus-Resumable: 1.0.0" --header "Content-Type: application/offset+octet-stream" --header "upload-offset: 7094272" --header "Expect:" -i
+
+RESPONSE
+--------
+HTTP/1.1 204 No Content
+Tus-Resumable: 1.0.0
+Upload-Offset: 7094472
+X-Content-Type-Options: nosniff
+Date: Tue, 08 Oct 2019 09:30:25 GMT
+
+*************************************************************************
+
+|| Upload remaining file and Check if its uploaded completely ||
+----------------------------------------------------------------
+REQUEST
+-------
+dd if=/home/ghanshyam/Videos/testfile_277M.mkv skip=7094472 bs=1 | curl --request PATCH --data-binary @- http://localhost:1080/files/13e3af8c43663ab312a30da0df722cba --header "Tus-Resumable: 1.0.0" --header "Content-Type: application/offset+octet-stream" --header "upload-offset: 7094472" --header "Expect:" -i
+
+RESPONSE
+--------
+HTTP/1.1 204 No Content
+Tus-Resumable: 1.0.0
+Upload-Offset: 290364446
+X-Content-Type-Options: nosniff
+Date: Tue, 08 Oct 2019 09:43:06 GMT
+
+*************************************************************************

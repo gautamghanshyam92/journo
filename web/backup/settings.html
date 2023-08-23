@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<head>
+
+<base href="">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="google" content="notranslate" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="assets/css/journo.css">
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"></script> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="libs/jquery-3.4.1.min.js"></script>
+<script src="assets/js/index.js"></script>
+<title>Journo</title>
+
+
+</head>
+<body>
+
+
+        <div class="ContainerFluid container-fluid">
+                <div class="Header row">
+                   <div class="HeaderText col-2">
+                      <p><span>JOURNO</span></p>
+                   </div>
+                   <div class="col-8">
+                      <form class="">
+                         <div class="SearchFormGroup form-group">
+                            <input name="searchStoryAndTag" id="searchStoryAndTag" placeholder="Search story names, tags" type="text" class="SearchStoryAndTag form-control">
+                         </div>
+                      </form>
+                   </div>
+                </div>
+                <div class="row">
+                   <div class="NavigationBar col-1">
+                      <ul class="nav flex-column">
+                         <li class="nav-item">
+                            <a class="NavLink nav-link" href="index.html">
+                               <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss" class="svg-inline--fa fa-rss fa-w-14 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                  <path fill="currentColor" d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path>
+                               </svg>
+                            </a>
+                         </li>
+                         <li class="nav-item">
+                            <a class="NavLink nav-link" href="settings.html">
+                               <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cog" class="svg-inline--fa fa-cog fa-w-16 " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                  <path fill="currentColor" d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z"></path>
+                               </svg>
+                            </a>
+                         </li>
+                      </ul>
+                   </div>
+                   <div class="col-2 padding-0" style="border-right: 1px solid #ccc;"> 
+                     <ul class="agency-tabs tab">
+                         <li class="tablinks active" onclick="openCity(event, 'Storage_container')" id="defaultOpen">Storage</li>
+                         <li class="tablinks" onclick="openCity(event, 'Category')">Category</li>
+                         <li class="tablinks" onclick="openCity(event, 'News-Agency')">News Agency</li>
+                         <li class="tablinks" onclick="openCity(event, 'Editor')">Editor</li>
+                     </ul>    
+                   </div>
+
+
+                   <div class="news-feed-right col-9">
+
+                     <!-- storage section starts-->
+                        <div id="Storage_container" class="tabcontent" style="display:block">
+                           <h3 class="tab-titles"> Storage </h3>
+                           <div class="create-btn-div"><button class="grow" data-toggle="modal" data-target="#create-storage">Create Storage</button></div>
+                           <table>
+                              <tr style="
+                              background-color: #0d75a5;
+                              color: #fff;">
+                                <th>Name</th>
+                                <th>Created Date</th>
+                                <th>Protocol</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                              </tr>
+                              <tr>
+                                <td>Dummy name</td>
+                                <td>25/7/2019</td>
+                                <td>FTP</td>
+                                <td>Enable</td>
+                                <td> <span class="table-edit"  data-toggle="modal" data-target="#myModal">Edit</span> <span class="table-del">Delete</span> </td>
+                              </tr>
+                            </table>
+                        </div>
+                     <!-- storage section ends-->
+                        
+                     <!-- Category section starts-->
+                        <div id="Category" class="tabcontent">
+                           <h3 class="tab-titles">Category</h3>
+                           <div class="create-btn-div"><button class="grow" data-toggle="modal" data-target="#create-category">Create Category</button></div>
+                              <table>
+                                    <tr style="
+                                    background-color: #0d75a5;
+                                    color: #fff;">
+                                      <th>Category Name</th>
+                                      <th>Category Time</th>
+                                      <th>Action</th>
+                                    </tr>
+                                    <tr>
+                                       <td id="display">Category Name</td>
+                                       <td>Category Time</td>
+                                      <td> <span class="table-edit"  data-toggle="modal" data-target="#category_modal" onclick="alledit();">Edit</span> <span class="table-del">Delete</span> </td>
+                                    </tr>
+                                  </table>
+                        </div>
+                     <!-- Category section ends-->
+                        
+                     <!-- News-Agency section starts-->
+                        <div id="News-Agency" class="tabcontent">
+                            <h3 class="tab-titles">News-Agency</h3>
+                            <div class="create-btn-div"><button class="grow" data-toggle="modal" data-target="#create-Agency">Create News Agency</button></div>
+                            <table>
+                                 <tr style="
+                                 background-color: #0d75a5;
+                                 color: #fff;">
+                                   <th>Agency Name</th>
+                                   <th>Feed Type</th>
+                                   <th>Feed Format</th>
+                                   <th>URL</th>
+                                   <th>Action</th>
+                                 </tr>
+                                 <tr>
+                                    <td>Agency Name</td>
+                                    <td>Feed Type</td>
+                                    <td>Feed Format</td>
+                                    <td>URL</td>
+                                   <td> <span class="table-edit"  data-toggle="modal" data-target="#agency_modal">Edit</span> <span class="table-del">Delete</span> </td>
+                                 </tr>
+                               </table>
+                        </div>
+                     <!-- News-Agency section ends-->
+
+                     <!-- Editor section starts-->
+                        <div id="Editor" class="tabcontent">
+                                <h3 class="tab-titles">Editor</h3>
+                                <div class="create-btn-div"><button class="grow" data-toggle="modal" data-target="#create-Editor">Create Editor</button></div>
+                                <table>
+                                    <tr style="
+                                    background-color: #0d75a5;
+                                    color: #fff;">
+                                      <th>App Name</th>
+                                      <th>Protocol</th>
+                                      <th>Data Format</th>
+                                      <th>URL</th>
+                                      <th>Action</th>
+                                    </tr>
+                                    <tr>
+                                       <td>App Name</td>
+                                       <td>Protocol</td>
+                                       <td>Data Format</td>
+                                       <td>URL</td>
+                                      <td> <span class="table-edit"  data-toggle="modal" data-target="#editor_modal" onclick="getStorageDetail('mediastore')">Edit</span> <span class="table-del">Delete</span> </td>
+                                    </tr>
+                                  </table>
+                        </div>
+                     <!-- Editor section starts-->
+
+
+                   </div><!--col--9 ends-->
+
+
+                </div>
+             </div>
+
+
+             <!--storage modal section starts-->
+             <div class="modal fade Storage_container_modal" id="myModal" role="dialog">
+               <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                     <h4 class="modal-title">Edit storage</h4>
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                 <p>Storage ID</p>
+                 <input type="text" placeholder="Enter Your storage ID">
+                 <p>Name</p>
+                 <input type="text" placeholder="Enter Your name">
+                 <p>Protocol</p>
+                 <select class="protocol-select">
+                     <option>Choose Protocol</option>
+                     <option value="file">FILE</option>
+                     <option value="smb">SMB</option>
+                     <option value="ftp">FTP</option>
+                 </select>
+                 <div class="file box">
+                    <label class="switch"><input type="checkbox" id="togBtn"><div class="slider round"></div></label>
+                    <p>Path</p>
+                    <input type="text" placeholder="Enter path url">
+                 </div>
+                 <div class="smb box">
+                     <label class="switch"><input type="checkbox" id="togBtn"><div class="slider round"></div></label>
+                     <p>IP</p>
+                     <input type="" placeholder="Enter IP address"><br>
+                     <p>Username</p>
+                     <input type="" placeholder="Enter Your Address"><br>
+                     <p>Password</p>
+                     <input type="" placeholder="Enter Your Password"><br>
+                     <p>Share Name</p>
+                     <input type="" placeholder="Enter Your Address"><br>
+                 </div>
+                 <div class="ftp box">
+                     <label class="switch"><input type="checkbox" id="togBtn"><div class="slider round"></div></label>
+                     <p>IP</p>
+                     <input type="" placeholder="Enter IP address"><br>
+                     <p>Username</p>
+                     <input type="" placeholder="Enter Your Address"><br>
+                     <p>Password</p>
+                     <input type="" placeholder="Enter Your Password"><br>
+                     <p>Offset path</p>
+                     <input type="" placeholder="Enter Your Address"><br>
+                 </div>
+                  <p class="align-center">
+                  <button class="std-btn" data-dismiss="modal">SAVE</button>
+                  </p>
+               </div>
+             </div>
+            </div>
+            </div>
+            <!--storage modal section ends-->
+
+             <!--category modal section starts-->
+             <div class="modal fade Storage_container_modal" id="category_modal" role="dialog">
+                  <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                        <h4 class="modal-title">Edit Category</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Category Name</p>
+                    <input type="text" placeholder="Category Name" id="user_input"><br>
+                    <p class="align-center">
+                        <button class="std-btn" data-dismiss="modal" onclick="allsave();">SAVE</button>
+                        </p>
+                  </div>
+                </div>
+               </div>
+               </div>
+               <!--category modal section ends-->
+
+            <!--Agency modal section starts-->
+             <div class="modal fade Storage_container_modal" id="agency_modal" role="dialog">
+                  <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                        <h4 class="modal-title">Edit Agency</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <p>Agency ID</p>
+                    <input type="text" placeholder="Enter Name" id="user_input"><br>
+                    <p>Agency Name</p>
+                    <input type="text" placeholder="Enter Name"><br>
+                    <p>Feed URL</p>
+                    <input type="text" placeholder="Enter Name"><br>
+                    <p>Feed Type</p>
+                    <select>
+                       <option>GET</option>
+                       <option>RSS</option>
+                    </select><br><br>
+                    <p>Feed FORMAT</p>
+                    <select>
+                       <option>JSON</option>
+                       <option>XML</option>
+                    </select>
+                    <p class="align-center">
+                        <button class="std-btn" data-dismiss="modal">SAVE</button>
+                        </p>
+                  </div>
+                </div>
+               </div>
+               </div>
+            <!--Agency modal section ends-->
+
+            <!--Editor modal section starts-->
+            <div class="modal fade Storage_container_modal" id="editor_modal" role="dialog">
+                  <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                        <h4 class="modal-title">Edit Editor</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                    <p>App ID</p>
+                    <input type="text" placeholder="Enter Name"><br>
+                    <p>App Name</p>
+                    <input type="text" placeholder="Enter Name"><br>
+                    <p>Post URL</p>
+                    <input type="text" placeholder="Enter Name"><br>
+                    <p>Protocol</p>
+                    <select>
+                       <option>POST</option>
+                       <option>UPLOAD</option>
+                    </select><br><br>
+                    <p>Data FORMAT</p>
+                    <select>
+                       <option>JSON</option>
+                       <option>XML</option>
+                    </select>
+                    <p class="align-center">
+                        <button class="std-btn" data-dismiss="modal">SAVE</button>
+                        </p>
+                  </div>
+                </div>
+               </div>
+               </div>
+            <!--Editor modal section ends-->
+
+
+<!-- CREATE POPUP -->
+
+             <!--storage modal section starts-->
+             <div class="modal fade Storage_container_modal" role="dialog">
+               <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                     <h4 class="modal-title">Create storage</h4>
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                 <p>Storage ID</p>
+                 <input type="text" placeholder="Enter Your storage ID">
+                 <p>Name</p>
+                 <input type="text" placeholder="Enter Your name">
+                 <p>Protocol</p>
+                 <select class="protocol-select">
+                     <option>Choose Protocol</option>
+                     <option value="file">FILE</option>
+                     <option value="smb">SMB</option>
+                     <option value="ftp">FTP</option>
+                 </select>
+                 <div class="file box">
+                    <label class="switch"><input type="checkbox" id="togBtn"><div class="slider round"></div></label>
+                    <p>Path</p>
+                    <input type="text" placeholder="Enter path url">
+                 </div>
+                 <div class="smb box">
+                     <label class="switch"><input type="checkbox" id="togBtn"><div class="slider round"></div></label>
+                     <p>IP</p>
+                     <input type="" placeholder="Enter IP address"><br>
+                     <p>Username</p>
+                     <input type="" placeholder="Enter Your Address"><br>
+                     <p>Password</p>
+                     <input type="" placeholder="Enter Your Password"><br>
+                     <p>Share Name</p>
+                     <input type="" placeholder="Enter Your Address"><br>
+                 </div>
+                 <div class="ftp box">
+                     <label class="switch"><input type="checkbox" id="togBtn"><div class="slider round"></div></label>
+                     <p>IP</p>
+                     <input type="" placeholder="Enter IP address"><br>
+                     <p>Username</p>
+                     <input type="" placeholder="Enter Your Address"><br>
+                     <p>Password</p>
+                     <input type="" placeholder="Enter Your Password"><br>
+                     <p>Offset path</p>
+                     <input type="" placeholder="Enter Your Address"><br>
+                 </div>
+                  <p class="align-center">
+                  <button class="std-btn">CREATE</button>
+                  </p>
+               </div>
+             </div>
+            </div>
+            </div>
+             <!--storage modal section starts-->
+
+                          <!--category modal section starts-->
+                          <div class="modal fade Storage_container_modal" id="create-category" role="dialog">
+                           <div class="modal-dialog">
+                         <div class="modal-content">
+                           <div class="modal-header">
+                                 <h4 class="modal-title">Create Category</h4>
+                             <button type="button" class="close" data-dismiss="modal">&times;</button>
+                           </div>
+                           <div class="modal-body">
+                              <p>Category Name</p>
+                              <input type="text" placeholder="Category Name"><br>
+                              <p>Category Created Time</p>
+                              <input type="text" placeholder="Category Created Time" id="cattime">
+                              <p class="align-center">
+                                  <button class="std-btn">CREATE</button>
+                                  </p>
+                            </div>
+                         </div>
+                        </div>
+                        </div>
+                         <!--category modal section starts-->
+
+
+             <!--Agency modal section starts-->
+             <div class="modal fade Storage_container_modal" id="create-Agency" role="dialog">
+               <div class="modal-dialog">
+             <div class="modal-content">
+               <div class="modal-header">
+                     <h4 class="modal-title">Create News-Agency</h4>
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <div class="modal-body">
+                  <p>Agency ID</p>
+                  <input type="text" placeholder="Enter Name"><br>
+                  <p>Agency Name</p>
+                  <input type="text" placeholder="Enter Name"><br>
+                  <p>Feed URL</p>
+                  <input type="text" placeholder="Enter Name"><br>
+                  <p>Feed Type</p>
+                  <select>
+                     <option>GET</option>
+                     <option>RSS</option>
+                  </select><br><br>
+                  <p>Feed FORMAT</p>
+                  <select>
+                     <option>JSON</option>
+                     <option>XML</option>
+                  </select>
+                  <p class="align-center">
+                      <button class="std-btn">CREATE</button>
+                      </p>
+                </div>
+             </div>
+            </div>
+            </div>
+             <!--Agency modal section starts-->
+
+
+                          <!--Editor modal section starts-->
+                          <div class="modal fade Storage_container_modal" id="create-Editor" role="dialog">
+                           <div class="modal-dialog">
+                         <div class="modal-content">
+                           <div class="modal-header">
+                                 <h4 class="modal-title">Create Editor</h4>
+                             <button type="button" class="close" data-dismiss="modal">&times;</button>
+                           </div>
+                           <div class="modal-body">
+                              <p>App ID</p>
+                              <input type="text" placeholder="Enter Name"><br>
+                              <p>App Name</p>
+                              <input type="text" placeholder="Enter Name"><br>
+                              <p>Post URL</p>
+                              <input type="text" placeholder="Enter Name"><br>
+                              <p>Protocol</p>
+                              <select>
+                                 <option>POST</option>
+                                 <option>UPLOAD</option>
+                              </select><br><br>
+                              <p>Data FORMAT</p>
+                              <select>
+                                 <option>JSON</option>
+                                 <option>XML</option>
+                              </select>
+                              <p class="align-center">
+                                  <button class="std-btn">CREATE</button>
+                                  </p>
+                            </div>
+                         </div>
+                        </div>
+                        </div>
+                         <!--Editor modal section starts-->
+
+
+<!-- CREATE POPUP ENDS -->
+
+
+</body>
+</html>

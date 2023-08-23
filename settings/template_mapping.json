@@ -1,0 +1,12 @@
+{
+  "settings": "settings.jinja.html",
+  "shares": "shares.jinja.html",
+  "categories": "categories.jinja.html",
+  "agencies": "agencies.jinja.html",
+
+  "index": "index.jinja.html",
+  "storyfeed": "storyfeed_index.jinja.html",
+  "story-detail": "story-detail.jinja.html",
+
+  "golive": "live-stream.jinja.html"
+}

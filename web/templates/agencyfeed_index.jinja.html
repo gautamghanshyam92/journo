@@ -1,0 +1,9 @@
+{% block agency %}
+   <ul class="agency-tabs tab">
+   {% for item in items.agencies%}
+   <li class="tablinks active" onclick="loadAgencyStoryFeed('{{item.id}}')">{{ item.name}}</li>
+   {% endfor %}
+   </ul>
+{% endblock %}
+   	
+
